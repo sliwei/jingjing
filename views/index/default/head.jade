@@ -1,0 +1,40 @@
+doctype html
+html(lang='en')
+  head
+    title Blogin | beautiful and Minimal Blog Template Designed & Coded
+    meta(charset='utf-8')
+    meta(name='author', content='')
+    link(rel='stylesheet', type='text/css', href='css/reset.css')
+    link(rel='stylesheet', type='text/css', href='css/main.css')
+  body
+    header
+      .wrapper
+        a(href='#')
+          img.h_logo(src='img/logo.png', alt='Blogin', title='')
+        nav
+          ul.main_nav
+            if route == 'index'
+              li.current
+                a(href='/') 絮叨
+            else
+              li
+                a(href='/') 絮叨
+            if route == 'work'
+              li.current
+                a(href='/work') 与事
+            else
+              li
+                a(href='/work') 与事
+            if route == 'about'
+              li.current
+                a(href='/about') 与我
+            else
+              li
+                a(href='/about') 与我
+            if route == 'contact'
+              li.current
+                a(href='/contact') 联系
+            else
+              li
+                a(href='/contact') 联系
+    // Header End
