@@ -45,7 +45,12 @@ router.get('work', async function (ctx, next) {
 });
 
 router.get('info/*', async function (ctx, next) {
-    // let dat = ctx.url;
+    let dat = ctx.url;
+    console.log(dat);
+    let urls = dat.replace('/info', '');
+    console.log(urls);
+
+
     // let id = dat.substring(6, dat.length - 5);
     // id = parseInt(id);
     // if (id > 0) {
@@ -68,7 +73,8 @@ router.get('info/*', async function (ctx, next) {
     //         };
     //     }
     ctx.state = {
-        title: ''
+        title: `jingjing-${conf.title}`,
+        urls: `https://mp.weixin.qq.com/s${urls}`
     };
     let url = 'index/info';
     await ctx.render(url, {});
