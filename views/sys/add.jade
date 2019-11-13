@@ -1,0 +1,23 @@
+include ../index/default/head
+link(rel='stylesheet', href='/css/add.css')
+script(src='/js/jquery.js')
+section.main.wrapper
+  .sys
+    p.name 新增一项
+    .item
+      p.title 标题：
+      input(id='title')
+    .item
+      p.title 简介：
+      textarea(id='note')
+    .item
+      p.title 头图：
+      input(id='upload',type='file',accept="image/*",multiple)
+      img.headimg(id='headimg')
+    .item
+      p.title 发表日期：
+      input(id='createtime',placeholder='微信发表的时间（xxxx-xx-xx xx:xx:xx）')
+    .item
+      button(id='save') 保存
+include ../index/default/footer
+script(src='/js/add.js')

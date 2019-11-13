@@ -1,54 +1,23 @@
 include default/head
 section.main.wrapper
-  article
-    .article_image
-      a(href='https://mp.weixin.qq.com/s/8Zp2giq8XyjET4-uKHp7FA')
-        img(src='img/2020/640.webp', alt='', title='')
-    .post
-      h1.title
-        a(href='https://mp.weixin.qq.com/s/8Zp2giq8XyjET4-uKHp7FA') 我的小姑娘
-      p
-        | 我宁愿永远孤独，也不愿用我的自由思想，去换一个王国的宝座。
-      a.read_more(href='https://mp.weixin.qq.com/s/8Zp2giq8XyjET4-uKHp7FA')
-        | Continue Reading
-        i.read_more_arrow
-  article
-    .article_image
-      a(href='#')
-        img(src='img/pic2.jpg', alt='', title='')
-    .post
-      h1.title
-        a(href='#') Duis aute irure dolor in henderit in voluptate.
-      p
-        | Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commo doconsequat,
-        | sunt in culpa qui officia deserunt mollit anim id est laborum.
-      p
-        | Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...
-      a.read_more(href='#')
-        | Continue Reading
-        i.read_more_arrow
-  article
-    .article_image
-      a(href='#')
-        img(src='img/pic3.jpg', alt='', title='')
-    .post
-      h1.title
-        a(href='#') Duis aute irure dolor in henderit in voluptate.
-      p
-        | Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commo doconsequat,
-        | sunt in culpa qui officia deserunt mollit anim id est laborum.
-      p
-        | Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...
-      a.read_more(href='#')
-        | Continue Reading
-        i.read_more_arrow
+  each item in book
+    article
+      .article_image
+        a(href=item.url)
+          img(src=item.headimg, alt='', title='')
+      .post
+        h1.title
+          a(href=item.url)=item.title
+        p
+          =item.note
+        a.read_more(href=item.url)
+          | Continue Reading
+          i.read_more_arrow
   nav.pagination
-    a.previous(href='#')
+    a.previous(href=previous)
       i
       | Previous
-    a.next(href='#')
+    a.next(href=next)
       | Next
       i
-    // Pagination End
-    // Main End
 include default/footer
