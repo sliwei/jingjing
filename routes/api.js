@@ -15,7 +15,7 @@ router.post('/upload', async (ctx, next) => {
 	console.log(JSON.stringify(ctx.request.files));
 	const file = ctx.request.files.file;
 	let options = {
-		url: 'http://localhost:3005/core/oss/upload',
+		url: 'http://0.0.0.0:3005/core/oss/upload',
 		method: 'POST',
 		formData: {
 			file: [
