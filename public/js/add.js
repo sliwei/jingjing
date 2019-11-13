@@ -28,6 +28,7 @@ $('#save').on('click', function () {
 	let data = {
 		title: $('#title').val(),
 		note: $('#note').val(),
+		url: $('#url').val(),
 		headimg: $('#headimg').attr('src'),
 		createtime: $('#createtime').val(),
 	};

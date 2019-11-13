@@ -49,7 +49,7 @@ router.post('/save', async (ctx, next) => {
 	let dat = ctx.request.body;
 	let result, message, code = 200;
 	try {
-		let sql = `insert into \`jing_book\`(title,note,headimg,createtime,user_id) values('${dat.title}', '${dat.note}', '${dat.headimg}', '${dat.createtime}',1)`;
+		let sql = `insert into \`jing_book\`(title,note,url,headimg,createtime,user_id) values('${dat.title}', '${dat.note}', '${dat.url}', '${dat.headimg}', '${dat.createtime}',1)`;
 		result = await db.op(sql);
 		'insertId' in result ? null : code = 0;
 	} catch (e) {
