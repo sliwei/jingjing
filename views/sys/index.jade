@@ -1,5 +1,42 @@
 include ../index/default/head
+link(rel='stylesheet', href='/css/sys.css')
 script(src='/js/jquery.js')
 section.main.wrapper
-  | list
+  p.name BOOK列表
+    a.add(href='/sys/add') 新增一项
+  table.tab
+    thead
+      tr
+        th 序号
+        th 头图
+        th 标题
+        th 发表时间
+        th 添加时间
+        th 状态
+        th 操作
+    tbody
+      each item in book
+        tr
+          td=item.id
+          td
+            img(src=item.headimg)
+          td=item.title
+          td=new Date(item.createtime).toISOString().replace('T', ' ').replace('.000Z', '')
+          td=new Date(item.addtime).toISOString().replace('T', ' ').replace('.000Z', '')
+          td
+            if item.is_del == 0
+              span.show 显示
+            else
+              span.hide 不显示
+          td
+            a(href=`/sys/edit/${item.id}`) 修改
+            if item.is_del == 0
+              a.del(id='del',data_id=item.id,href='javascript:;') 删除
+            else
+              a.res(id='res',data_id=item.id,href='javascript:;') 恢复
+  p.total
+    | 共
+    =book.length
+    | 条
 include ../index/default/footer
+script(src='/js/sys.js')

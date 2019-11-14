@@ -6,7 +6,7 @@ const num = conf.num;
 var page = conf.page;
 
 router.get('/', async function (ctx, next) {
-	let sql = 'from jing_book where is_del = 0 order by createtime desc';
+	let sql = 'from jing_book where is_del = 0 and menu_id = 1 order by createtime desc';
 	let book = await db.findLimit('*', sql, 1, 10);
 	ctx.state = {
 		book: book.rows,
@@ -40,10 +40,14 @@ router.get('page/:page', async function (ctx, next) {
 });
 
 router.get('work', async function (ctx, next) {
+	let sql = 'from jing_book where is_del = 0 and menu_id = 2 order by createtime desc';
+	let book = await db.findLimit('*', sql, 1, 10);
 	ctx.state = {
-		title: `与事-${conf.title}`,
+		book: book.rows,
+		title: `絮叨-${conf.title}`,
 		route: 'work',
-		blog: {}
+		previous: '/#',
+		next: '/page/2',
 	};
 	await ctx.render('index/work', {});
 });
@@ -64,11 +68,15 @@ router.get('info/*', async function (ctx, next) {
 });
 
 router.get('about', async function (ctx, next) {
+	let sql = 'from jing_book where is_del = 0 and menu_id = 3 order by createtime desc';
+	let book = await db.findLimit('*', sql, 1, 10);
 	ctx.state = {
-		title: `与我-${conf.title}`,
-		route: 'about'
+		book: book.rows,
+		title: `絮叨-${conf.title}`,
+		route: 'about',
+		previous: '/#',
+		next: '/page/2',
 	};
-
 	await ctx.render('index/about', {});
 });
 

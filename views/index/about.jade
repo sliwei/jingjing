@@ -1,5 +1,27 @@
 include default/head
 section.main.wrapper
-  p(style='margin: 100px auto;text-align: center;color: #999')
-    | no more ...
+  if book.length
+    each item in book
+      article
+        .article_image
+          a(href=item.url)
+            img(src=item.headimg, alt='', title='')
+        .post
+          h1.title
+            a(href=item.url)=item.title
+          p
+            =item.note
+          a.read_more(href=item.url)
+            | Continue Reading
+            i.read_more_arrow
+    nav.pagination
+      a.previous(href=previous)
+        i
+        | Previous
+      a.next(href=next)
+        | Next
+        i
+  else
+    p(style='margin: 100px auto;text-align: center;color: #999')
+      | no more ...
 include default/footer

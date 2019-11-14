@@ -49,9 +49,30 @@ router.post('/save', async (ctx, next) => {
 	let dat = ctx.request.body;
 	let result, message, code = 200;
 	try {
-		let sql = `insert into \`jing_book\`(title,note,url,headimg,createtime,user_id) values('${dat.title}', '${dat.note}', '${dat.url}', '${dat.headimg}', '${dat.createtime}',1)`;
+		let sql = `insert into \`jing_book\`(title,note,url,headimg,createtime,user_id,menu_id) values('${dat.title}', '${dat.note}', '${dat.url}', '${dat.headimg}', '${dat.createtime}',1,'${dat.menu_id}')`;
 		result = await db.op(sql);
 		'insertId' in result ? null : code = 0;
+	} catch (e) {
+		message = e.name + ':' + e.message;
+		code = 200;
+	}
+	ctx.body = {
+		data: {},
+		message: message,
+		code: code,
+	};
+});
+
+/**
+ * lw 新增一项
+ */
+router.post('/del', async (ctx, next) => {
+	let dat = ctx.request.body;
+	let result, message, code = 200;
+	try {
+		let sql = `UPDATE jing_book SET is_del=${dat.sta} WHERE id=${dat.id}`;
+		result = await db.op(sql);
+		console.log(result);
 	} catch (e) {
 		message = e.name + ':' + e.message;
 		code = 200;

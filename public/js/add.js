@@ -3,6 +3,7 @@ $('#upload').on('change', function () {
 	var formdata = new FormData();
 	formdata.append('file', this.files[0]);
 
+	$('#upload').val('');
 	$.ajax({
 		url: '/api/upload',
 		type: 'POST',
@@ -26,6 +27,7 @@ $('#upload').on('change', function () {
 
 $('#save').on('click', function () {
 	let data = {
+		menu_id: $('#menu').val(),
 		title: $('#title').val(),
 		note: $('#note').val(),
 		url: $('#url').val(),

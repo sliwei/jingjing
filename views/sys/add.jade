@@ -5,6 +5,11 @@ section.main.wrapper
   .sys
     p.name 新增一项
     .item
+      p.title 类别：
+      select.menu(id='menu')
+        each item in menu
+          option(value=item.id)=item.title
+    .item
       p.title 标题：
       input(id='title')
     .item
