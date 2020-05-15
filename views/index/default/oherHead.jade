@@ -1,0 +1,28 @@
+doctype html
+html(lang='en')
+  head
+    title COOOE | JingJing | Wxs | 库易
+    meta(charset='utf-8')
+    meta(name='author', content='')
+    link(rel='stylesheet', type='text/css', href='/css/reset.css')
+    link(rel='stylesheet', type='text/css', href='/css/main.css')
+  body
+    header
+      .wrapper
+        a(href='/')
+          img.h_logo(src='/img/logo.png', alt='Coooe', title='')
+        nav
+          ul.main_nav
+            if route == 'index'
+              li.current
+                a(href='/') 公开课
+            else
+              li
+                a(href='/') 公开课
+            if route == 'resume'
+              li.current
+                a(href='/resume') 简历
+            else
+              li
+                a(href='/resume') 简历
+    // Header End

@@ -25,7 +25,7 @@ app.use(koaBody({
 }));
 
 // middlewares
-app.use(favicon(__dirname + '/public/p/favicon.ico'));
+app.use(favicon(__dirname + '/public/img/favicon.ico'));
 // app.use(convert(bodyparser));
 app.use(convert(json()));
 app.use(convert(logger()));

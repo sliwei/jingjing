@@ -10,6 +10,28 @@ router.get('/', async function (ctx, next) {
 	let book = await db.findLimit('*', sql, 1, 10);
 	ctx.state = {
 		book: book.rows,
+		title: `公开课-${conf.title}`,
+		route: 'index',
+		previous: '/#',
+		next: '/page/2',
+	};
+	await ctx.render('index/class', {});
+});
+
+router.get('resume', async function (ctx, next) {
+	ctx.state = {
+		title: `简历-${conf.title}`,
+		route: 'resume'
+	};
+
+	await ctx.render('index/resume', {});
+});
+
+router.get('/home', async function (ctx, next) {
+	let sql = 'from jing_book where is_del = 0 and menu_id = 1 order by createtime desc';
+	let book = await db.findLimit('*', sql, 1, 10);
+	ctx.state = {
+		book: book.rows,
 		title: `絮叨-${conf.title}`,
 		route: 'index',
 		previous: '/#',
