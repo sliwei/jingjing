@@ -27,7 +27,7 @@ router.get('resume', async function (ctx, next) {
 	await ctx.render('index/resume', {});
 });
 
-router.get('/home', async function (ctx, next) {
+router.get('home', async function (ctx, next) {
 	let sql = 'from jing_book where is_del = 0 and menu_id = 1 order by createtime desc';
 	let book = await db.findLimit('*', sql, 1, 10);
 	ctx.state = {
