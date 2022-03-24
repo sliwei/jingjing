@@ -5,13 +5,12 @@ const fs = require('fs');
  * Created by awei on 2017/3/17.
  */
 
-var router = require('koa-router')();
-const db = require('../connect');
+const db = null
 
 /**
  * 单张图片上传
  */
-router.post('/upload', async (ctx, next) => {
+const upload = async (ctx, next) => {
 	console.log(JSON.stringify(ctx.request.files));
 	const file = ctx.request.files.file;
 	let options = {
@@ -40,12 +39,12 @@ router.post('/upload', async (ctx, next) => {
 	let res = JSON.parse(dat);
 	delete res.data.res;
 	ctx.body = res;
-});
+};
 
 /**
  * lw 新增一项
  */
-router.post('/save', async (ctx, next) => {
+const save = async (ctx, next) => {
 	let dat = ctx.request.body;
 	let result, message, code = 200;
 	try {
@@ -61,12 +60,12 @@ router.post('/save', async (ctx, next) => {
 		message: message,
 		code: code,
 	};
-});
+};
 
 /**
  * lw 新增一项
  */
-router.post('/del', async (ctx, next) => {
+const del = async (ctx, next) => {
 	let dat = ctx.request.body;
 	let result, message, code = 200;
 	try {
@@ -82,6 +81,10 @@ router.post('/del', async (ctx, next) => {
 		message: message,
 		code: code,
 	};
-});
+};
 
-module.exports = router;
+module.exports = {
+	upload,
+	save,
+	del,
+};
