@@ -1,5 +1,5 @@
 const db = null
-const conf = require('../config')
+import conf from '../config'
 
 const root = async (ctx, next) => {
   let sql =

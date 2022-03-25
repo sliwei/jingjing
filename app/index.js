@@ -3,6 +3,7 @@ import views from 'koa-views'
 import json from 'koa-json'
 import favicon from 'koa-favicon'
 import koaBody from 'koa-body'
+import koaStatic from 'koa-static'
 import logger from 'koa-logger'
 import colors from 'colors'
 import { resolve } from 'path'
@@ -34,7 +35,7 @@ app.use(json())
 app.use(logger())
 
 // 资源文件
-app.use(require('koa-static')(resolve(__dirname, './public')))
+app.use(koaStatic(resolve(__dirname, './public')))
 
 // 模板引擎
 app.use(views(resolve(__dirname, './views'), { extension: 'jade' }))
@@ -151,4 +152,4 @@ app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
 })
 
-module.exports = app
+export { app }

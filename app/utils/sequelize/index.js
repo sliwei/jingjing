@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const { db } = require('../../config')
+import Sequelize from 'sequelize'
+import { db } from '../../config'
 const sequelize = new Sequelize(db.database, db.username, db.password, db.conf)
 
 sequelize
@@ -11,7 +11,4 @@ sequelize
     console.log('数据库连接失败'.red)
   })
 
-module.exports = {
-  Sequelize: Sequelize,
-  sequelize: sequelize
-}
+export { Sequelize, sequelize }

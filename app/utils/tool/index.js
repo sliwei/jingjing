@@ -42,8 +42,4 @@ const randomString = function (len) {
   return pwd
 }
 
-module.exports = {
-  rand,
-  getDateStr,
-  randomString
-}
+export { rand, getDateStr, randomString }

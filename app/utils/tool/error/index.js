@@ -1,5 +1,5 @@
-const util = require('util')
-const ERROR_MSG = require('./errorMsg')
+import util from 'util'
+import ERROR_MSG from './errorMsg'
 
 function CustomError(code, msg) {
   Error.call(this, '')
@@ -27,7 +27,4 @@ function HttpError(code, msg) {
 
 util.inherits(HttpError, CustomError)
 
-module.exports = {
-  HttpError,
-  CustomError
-}
+export { HttpError, CustomError }

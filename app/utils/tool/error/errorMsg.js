@@ -1,4 +1,4 @@
-module.exports = Object.freeze({
+export default {
   // en
   // 0: 'fail',
   // 1: 'validation error',
@@ -20,4 +20,4 @@ module.exports = Object.freeze({
   404: '找不到：请检查URL以确保路径正确',
   500: '服务器的内部错误',
   503: '服务不可用'
-})
+}

@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-var app = require('../app')
+var { app } = require('../app')
 var conf = require('../app/config')
 var debug = require('debug')('demo:server')
 var http = require('http')

@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken')
-const conf = require('../../config')
-const { HttpError } = require('./error')
+import jwt from 'jsonwebtoken'
+import conf from '../../config'
+import { HttpError } from './error'
 
 /**
  * 创建token
@@ -40,7 +40,4 @@ const checkToken = async (ctx, next) => {
   await next()
 }
 
-module.exports = {
-  createToken,
-  checkToken
-}
+export { createToken, checkToken }

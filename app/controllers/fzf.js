@@ -1,4 +1,4 @@
-const { HttpError } = require('../utils/tool/error')
+import { HttpError } from '../utils/tool/error'
 
 const fzf = async (ctx, next) => {
   throw new HttpError(404)

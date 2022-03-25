@@ -3,8 +3,8 @@
  * wiki：https://github.com/node-modules/parameter/blob/master/example.js
  * @type {Parameter}
  */
-const { HttpError } = require('../../utils/tool/error')
-const Parameter = require('parameter')
+import { HttpError } from '../../utils/tool/error'
+import Parameter from 'parameter'
 const parm = new Parameter()
 
 // 自定义校验
@@ -62,4 +62,4 @@ const parameter = async (ctx, next) => {
   await next()
 }
 
-module.exports = parameter
+export default parameter

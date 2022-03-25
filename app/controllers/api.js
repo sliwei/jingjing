@@ -1,4 +1,4 @@
-const fs = require('fs')
+import fs from 'fs'
 
 /**
  * Created by awei on 2017/3/17.

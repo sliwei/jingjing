@@ -24,4 +24,4 @@ export default {
       timezone: '+08:00'
     }
   }
-};
+}

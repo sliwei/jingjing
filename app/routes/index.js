@@ -1,6 +1,8 @@
-const router = require('koa-router')()
-const swaggerJsdoc = require('swagger-jsdoc')
-const { join } = require('path')
+import koaRouter from 'koa-router'
+import swaggerJsdoc from 'swagger-jsdoc'
+import { join } from 'path'
+
+const router = new koaRouter()
 
 const options = {
   definition: {
@@ -48,18 +50,18 @@ const options = {
 }
 const openapiSpecification = swaggerJsdoc(options)
 // 数据校验
-const parameter = require('../utils/parameter')
+import parameter from '../utils/parameter'
 // token校验
-const { checkToken } = require('../utils/tool/token')
+import { checkToken } from '../utils/tool/token'
 // 验证码校验
-const { checkCode } = require('../utils/tool/verification')
+import { checkCode } from '../utils/tool/verification'
 
-const { get, post } = require('../controllers/test')
-const { code } = require('../controllers/verification')
-const { fzf } = require('../controllers/fzf')
-const api = require('../controllers/api')
-const sys = require('../controllers/sys')
-const index = require('../controllers/index')
+import { get, post } from '../controllers/test'
+import { code } from '../controllers/verification'
+import { fzf } from '../controllers/fzf'
+import * as api from '../controllers/api'
+import * as sys from '../controllers/sys'
+import * as index from '../controllers/index'
 // test
 router.get('/test/get', get)
 router.post('/test/post', post)
@@ -89,4 +91,4 @@ router.get('/', index.root)
 // fzf
 router.get('*', fzf)
 
-module.exports = router
+export default router

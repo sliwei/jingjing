@@ -1,6 +1,6 @@
-const conf = require('../../config')
-const md5 = require('js-md5')
-const { CustomError, HttpError } = require('./error')
+import conf from '../../config'
+import md5 from 'js-md5'
+import { CustomError, HttpError } from './error'
 
 /**
  * 检测验证码正确性
@@ -33,4 +33,4 @@ const checkCode = async (ctx, next) => {
   await next()
 }
 
-module.exports = { checkCode }
+export { checkCode }
