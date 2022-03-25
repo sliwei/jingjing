@@ -1,6 +1,9 @@
-node_modules
 .DS_Store
 dist
-*.local
-node_modules/*
+node_modules
 yarn.lock
+video.min.js
+waypoints.js
+jquery.js
+video-js.min.css
+reset.css

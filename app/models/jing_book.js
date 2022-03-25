@@ -1,63 +1,55 @@
-/* jshint indent: 2 */
-const moment = require('moment');
+const moment = require('moment')
 
-module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('jing_book', {
-    id: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+export default (sequelize, DataTypes) => {
+  return sequelize.define(
+    'jing_book',
+    {
+      id: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
+      }, // int(11) NOT NULL AUTO_INCREMENT,
+      menu_id: {
+        type: DataTypes.INTEGER(11),
+        allowNull: true
+      }, // int(11) DEFAULT NULL,
+      title: {
+        type: DataTypes.CHAR(255),
+        allowNull: true
+      }, // varchar(255) DEFAULT NULL,
+      note: {
+        type: DataTypes.CHAR(255),
+        allowNull: true
+      }, // varchar(255) DEFAULT NULL,
+      url: {
+        type: DataTypes.CHAR(255),
+        allowNull: true
+      }, // varchar(255) DEFAULT NULL,
+      headimg: {
+        type: DataTypes.CHAR(255),
+        allowNull: true
+      }, // varchar(255) DEFAULT NULL,
+      createtime: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        get() {
+          return moment(this.getDataValue('create_time')).format(
+            'YYYY-MM-DD HH:mm:ss'
+          )
+        }
+      }, // datetime DEFAULT NULL,
+      is_del: {
+        type: DataTypes.INTEGER(1),
+        allowNull: true
+      }, // int(1) unsigned zerofill DEFAULT NULL,
+      user_id: {
+        type: DataTypes.INTEGER(11),
+        allowNull: true
+      } // int(11) DEFAULT NULL,
     },
-    name: {
-      type: DataTypes.CHAR(30),
-      allowNull: true
-    },
-    user: {
-      type: DataTypes.CHAR(30),
-      allowNull: true
-    },
-    password: {
-      type: DataTypes.STRING(80),
-      allowNull: true
-    },
-    mail: {
-      type: DataTypes.STRING(30),
-      allowNull: true
-    },
-    create_time: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      get() {
-        return moment(this.getDataValue('create_time')).format('YYYY-MM-DD HH:mm:ss');
-      },
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
-    },
-    website: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    good: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true
-    },
-    bad: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true,
-      defaultValue: '0'
-    },
-    newly_login: {
-      type: DataTypes.DATE,
-      get() {
-        return moment(this.getDataValue('newly_login')).format('YYYY-MM-DD HH:mm:ss');
-      },
-      allowNull: true
-    },
-    head_img: {
-      type: DataTypes.STRING(255),
-      allowNull: true
+    {
+      tableName: 'jing_book'
     }
-  }, {
-    tableName: 'jing_book',
-  });
-};
+  )
+}

@@ -1,6 +1,4 @@
-'use strict'
-
-module.exports = {
+export default {
   env: 'live',
   api_url: {
     API_CORE: 'http://core-serve:3000'

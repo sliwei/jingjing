@@ -1,55 +1,55 @@
 $('#upload').on('change', function () {
-	console.log(this.files[0]);
-	var formdata = new FormData();
-	formdata.append('file', this.files[0]);
+  console.log(this.files[0])
+  var formdata = new FormData()
+  formdata.append('file', this.files[0])
 
-	$('#upload').val('');
-	$.ajax({
-		url: '/api/upload',
-		type: 'POST',
-		data: formdata,
-		contentType: false,
-		processData: false,
-		success: function (res) {
-			console.log(res);
-			if (res.code) {
-				$('#headimg').attr('src', res.data.url);
-			} else {
-				alert('error code!')
-			}
-		},
-		error: function (e) {
-			console.log(e);
-			alert('error network!')
-		}
-	});
-});
+  $('#upload').val('')
+  $.ajax({
+    url: '/api/upload',
+    type: 'POST',
+    data: formdata,
+    contentType: false,
+    processData: false,
+    success: function (res) {
+      console.log(res)
+      if (res.code) {
+        $('#headimg').attr('src', res.data.url)
+      } else {
+        alert('error code!')
+      }
+    },
+    error: function (e) {
+      console.log(e)
+      alert('error network!')
+    }
+  })
+})
 
 $('#save').on('click', function () {
-	let data = {
-		menu_id: $('#menu').val(),
-		title: $('#title').val(),
-		note: $('#note').val(),
-		url: $('#url').val(),
-		headimg: $('#headimg').attr('src'),
-		createtime: $('#createtime').val(),
-	};
-	console.log(data);
-	$.ajax({
-		url: '/api/save',
-		type: 'POST',
-		data: data,
-		success: function (res) {
-			console.log(res);
-			if (res.code) {
-				window.location = '/sys'
-			} else {
-				alert('error code!')
-			}
-		},
-		error: function (e) {
-			console.log(e);
-			alert('error network!')
-		}
-	});
-});
+  let data = {
+    menu_id: $('#menu').val(),
+    title: $('#title').val(),
+    note: $('#note').val(),
+    url: $('#url').val(),
+    headimg: $('#headimg').attr('src'),
+    createtime: $('#createtime').val()
+  }
+  console.log(data)
+  $.ajax({
+    url: '/api/save',
+    type: 'POST',
+    data: data,
+    success: function (res) {
+      console.log(res)
+      if (res.code) {
+        window.location = '/sys'
+      } else {
+        alert('error code!')
+      }
+    },
+    error: function (e) {
+      console.log(e)
+      alert('error network!')
+    }
+  })
+})

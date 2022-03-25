@@ -11,6 +11,7 @@
     "build:prod": "webpack --env.ENV=prod --env.production",
     "build:live": "webpack --env.ENV=live --env.production",
     "node": "node dist/server.js",
+    "prettier": "npx prettier --write .",
     "lint": "eslint --quiet=true --fix --ext .js app",
     "lint:fix": "eslint --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,6 +22,7 @@
     }
   },
   "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown",
     "app/**/*.js": [
       "eslint --fix",
       "git add"
@@ -56,8 +58,8 @@
     "@babel/runtime": "^7.16.7",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "5.1.1",
     "colors": "^1.3.2",
+    "copy-webpack-plugin": "5.1.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.6.0",
     "externals-dependencies": "^1.0.4",

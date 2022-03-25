@@ -14,13 +14,12 @@ const config = {
     maxAge: 1000 * 3600 * 48,
     path: '/',
     httpOnly: false
-  }
+  },
+  ...env // 合并环境配置到config
 }
-// 合并环境配置到config
-Object.assign(config, env)
 
 console.log('模式:', process.env.MODE)
 console.log('环境:', process.env.ENV)
 console.log('Listening on port: http://localhost:%d', config.port)
 
-module.exports = config
+export default config

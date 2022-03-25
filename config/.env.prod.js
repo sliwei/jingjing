@@ -1,6 +1,4 @@
-'use strict'
-
-module.exports = {
+export default {
   env: 'prod',
   api_url: {
     API_CORE: 'http://core:3000'

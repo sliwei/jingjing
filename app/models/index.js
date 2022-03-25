@@ -1,10 +1,10 @@
-const {sequelize, Sequelize} = require('../utils/sequelize');
+import { sequelize, Sequelize } from '../utils/sequelize'
 
-const jing_book = require('./jing_book');
-const jing_menu = require('./jing_menu');
+import jing_book from './jing_book'
+import jing_menu from './jing_menu'
 
-const JingBook = jing_book(sequelize, Sequelize);
-const JingMenu = jing_menu(sequelize, Sequelize);
+const JingBook = jing_book(sequelize, Sequelize)
+const JingMenu = jing_menu(sequelize, Sequelize)
 
 /**
  * Associations - 关联
@@ -14,9 +14,9 @@ const JingMenu = jing_menu(sequelize, Sequelize);
  * belongsToMany 多对多关联用于将源与多个目标相连接。 此外，目标也可以连接到多个源
  */
 
-module.exports = {
+export default {
   JingBook,
   JingMenu,
   sequelize,
-  Sequelize,
-};
+  Sequelize
+}

@@ -28,7 +28,8 @@
   width: 60px;
 }
 
-.tab td, .tab th {
+.tab td,
+.tab th {
   border: 1px solid #ddd;
   padding: 8px 12px;
 }

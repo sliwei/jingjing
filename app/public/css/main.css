@@ -1,5 +1,6 @@
 html {
-  font-family: Source Sans Pro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+  font-family: Source Sans Pro, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Helvetica Neue, Arial, sans-serif;
 }
 /*  Header  */
 header {
@@ -72,7 +73,6 @@ ul.main_nav li a:hover {
   overflow: hidden;
 }
 
-
 .main .article_image,
 .main .post {
   float: left;
@@ -82,7 +82,6 @@ ul.main_nav li a:hover {
   width: 470px;
   margin-right: 40px;
 }
-
 
 .main .post {
   width: 430px;
@@ -177,7 +176,6 @@ ul.main_nav li a:hover {
   margin-bottom: 80px;
 }
 
-
 /*  Sidebar & widgets  */
 aside {
   width: 280px;
@@ -217,26 +215,26 @@ aside .textwidget p {
   padding: 0 20px;
   color: #828282;
   font-size: 12px;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   outline: none;
   border: 1px #e1e0e0 solid;
 }
-
 
 .search_widget .search-field:focus {
   border: 1px #b9b9b9 solid;
 }
 
-
 ::-webkit-input-placeholder {
   color: #b9b9b9;
 }
 
-:-moz-placeholder { /* Firefox 18- */
+:-moz-placeholder {
+  /* Firefox 18- */
   color: #b9b9b9;
 }
 
-::-moz-placeholder { /* Firefox 19+ */
+::-moz-placeholder {
+  /* Firefox 19+ */
   color: #b9b9b9;
 }
 
@@ -312,7 +310,6 @@ aside .textwidget p {
   background-position: -16px 0;
 }
 
-
 /*  footer  */
 footer {
   width: 100%;
@@ -337,13 +334,11 @@ footer p.rights {
   font-size: 13px;
 }
 
-
 footer p.rights a {
   font-weight: bold;
   color: #939292;
   text-decoration: none;
 }
-
 
 footer ul.social_profiles {
   width: 100%;
@@ -382,7 +377,6 @@ footer ul.social_profiles .d a {
   background-position: -123px 0;
 }
 
-
 footer ul.social_profiles .f a:hover {
   background-position: 0 0;
 }
@@ -398,7 +392,6 @@ footer ul.social_profiles .be a:hover {
 footer ul.social_profiles .d a:hover {
   background-position: -123px 0;
 }
-
 
 /*  General CSS*/
 .wrapper {
@@ -420,8 +413,8 @@ ul.main_nav li a,
 .next i,
 footer ul.social_profiles li a,
 .search_widget .search-field {
-  transition: .2s linear;
-  -webkit-transition: .2s linear;
-  -moz-transition: .2s linear;
-  -o-transition: .2s linear;
+  transition: 0.2s linear;
+  -webkit-transition: 0.2s linear;
+  -moz-transition: 0.2s linear;
+  -o-transition: 0.2s linear;
 }

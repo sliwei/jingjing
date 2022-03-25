@@ -1,6 +1,4 @@
-'use strict'
-
-module.exports = {
+export default {
   env: 'dev',
   api_url: {
     API_CORE: 'http://core:3000'
@@ -26,4 +24,4 @@ module.exports = {
       timezone: '+08:00'
     }
   }
-}
+};
