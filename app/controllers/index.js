@@ -111,13 +111,4 @@ const contact = async (ctx, next) => {
   await ctx.render('index/contact', {})
 }
 
-export default {
-  root,
-  resume,
-  home,
-  page,
-  work,
-  info,
-  about,
-  contact
-}
+export { root, resume, home, page, work, info, about, contact }

@@ -82,8 +82,4 @@ const del = async (ctx, next) => {
   }
 }
 
-export default {
-  upload,
-  save,
-  del
-}
+export { upload, save, del }

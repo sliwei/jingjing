@@ -28,6 +28,4 @@ const code = async function (ctx, next) {
   ctx.body = ctx.DATA
 }
 
-export default {
-  code
-}
+export { code }

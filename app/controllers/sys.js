@@ -27,7 +27,4 @@ const root = async (ctx, next) => {
   await ctx.render('sys/index', {})
 }
 
-export default {
-  add,
-  root
-}
+export { add, root }

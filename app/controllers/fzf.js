@@ -4,4 +4,4 @@ const fzf = async (ctx, next) => {
   throw new HttpError(404)
 }
 
-export default { fzf }
+export { fzf }

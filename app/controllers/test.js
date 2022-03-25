@@ -16,7 +16,4 @@ const post = async (ctx, next) => {
   ctx.body = ctx.DATA
 }
 
-export default {
-  get,
-  post
-}
+export { get, post }
