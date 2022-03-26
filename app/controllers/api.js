@@ -1,10 +1,6 @@
 import fs from 'fs'
-
-/**
- * Created by awei on 2017/3/17.
- */
-
-const db = null
+import { JingBook } from '../models'
+import moment from 'moment'
 
 /**
  * 单张图片上传
@@ -37,48 +33,96 @@ const upload = async (ctx, next) => {
 }
 
 /**
- * lw 新增一项
+ * @swagger
+ * /api/save:
+ *   post:
+ *     tags:
+ *       - server
+ *     summary: 新增一项
+ *     description: 说明
+ *     requestBody:
+ *       description: Pet object that needs to be added to the store
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 description: 标题
+ *               note:
+ *                 type: string
+ *                 description: 备注
+ *               url:
+ *                 type: string
+ *                 description: 地址
+ *               headimg:
+ *                 type: string
+ *                 description: 头图
+ *               createtime:
+ *                 type: string
+ *                 description: 创建时间
+ *               user_id:
+ *                 type: number
+ *                 description: 用户ID
+ *               menu_id:
+ *                 type: number
+ *                 description: 菜单ID
+ *     responses:
+ *       '200':
+ *         description: 成功说明
+ *       '400':
+ *         description: 失败说明
  */
 const save = async (ctx, next) => {
-  let dat = ctx.request.body
-  let result,
-    message,
-    code = 200
-  try {
-    let sql = `insert into \`jing_book\`(title,note,url,headimg,createtime,user_id,menu_id) values('${dat.title}', '${dat.note}', '${dat.url}', '${dat.headimg}', '${dat.createtime}',1,'${dat.menu_id}')`
-    result = await db.op(sql)
-    'insertId' in result ? null : (code = 0)
-  } catch (e) {
-    message = e.name + ':' + e.message
-    code = 200
-  }
+  const dat = ctx.request.body
+  const result = await JingBook.create({
+    title: dat.title,
+    note: dat.note,
+    url: dat.url,
+    headimg: dat.headimg,
+    createtime: dat.createtime || moment().format(),
+    user_id: 1,
+    menu_id: dat.menu_id
+  })
   ctx.body = {
-    data: {},
-    message: message,
-    code: code
+    ...ctx.DATA,
+    data: { insertId: result.id }
   }
 }
 
 /**
- * lw 新增一项
+ * @swagger
+ * /api/del:
+ *   post:
+ *     tags:
+ *       - server
+ *     summary: 删除一项
+ *     description: 说明
+ *     requestBody:
+ *       description: Pet object that needs to be added to the store
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               sta:
+ *                 type: number
+ *                 description: 状态
+ *               id:
+ *                 type: number
+ *                 description: 文章ID
+ *     responses:
+ *       '200':
+ *         description: 成功说明
+ *       '400':
+ *         description: 失败说明
  */
 const del = async (ctx, next) => {
   let dat = ctx.request.body
-  let result,
-    message,
-    code = 200
-  try {
-    let sql = `UPDATE jing_book SET is_del=${dat.sta} WHERE id=${dat.id}`
-    result = await db.op(sql)
-    console.log(result)
-  } catch (e) {
-    message = e.name + ':' + e.message
-    code = 200
-  }
+  await JingBook.update({ is_del: dat.sta }, { where: { id: dat.id } })
   ctx.body = {
-    data: {},
-    message: message,
-    code: code
+    ...ctx.DATA
   }
 }
 

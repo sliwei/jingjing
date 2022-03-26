@@ -21,7 +21,8 @@ export default {
         insecureAuth: true,
         timestamps: false
       },
-      timezone: '+08:00'
+      timezone: '+08:00',
+      logging: true
     }
   }
 }

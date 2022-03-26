@@ -1,17 +1,7 @@
-const db = null
+import { JingBook } from '../models'
 import conf from '../config'
 
 const root = async (ctx, next) => {
-  let sql =
-    'from jing_book where is_del = 0 and menu_id = 1 order by createtime desc'
-  let book = await db.findLimit('*', sql, 1, 10)
-  ctx.state = {
-    book: book.rows,
-    title: `公开课-${conf.title}`,
-    route: 'index',
-    previous: '/#',
-    next: '/page/2'
-  }
   await ctx.render('index/class', {})
 }
 
@@ -20,17 +10,25 @@ const resume = async (ctx, next) => {
     title: `简历-${conf.title}`,
     route: 'resume'
   }
-
   await ctx.render('index/resume', {})
 }
 
 const home = async (ctx, next) => {
-  let sql =
-    'from jing_book where is_del = 0 and menu_id = 1 order by createtime desc'
-  let book = await db.findLimit('*', sql, 1, 10)
+  const pageIndex = 1,
+    pageSize = 10
+  const offset = pageIndex * pageSize - pageSize
+  const res = await JingBook.findAndCountAll({
+    where: {
+      is_del: 0,
+      menu_id: 1
+    },
+    order: [['createtime', 'DESC']],
+    offset: offset,
+    limit: pageSize
+  })
   ctx.state = {
-    book: book.rows,
-    title: `絮叨-${conf.title}`,
+    book: res.rows,
+    title: `公开课-${conf.title}`,
     route: 'index',
     previous: '/#',
     next: '/page/2'
@@ -39,32 +37,50 @@ const home = async (ctx, next) => {
 }
 
 const page = async (ctx, next) => {
-  let page = ctx.params.page || 1
-  if (page) {
-    page = parseInt(page)
+  const pageSize = 10
+  let pageIndex = ctx.params.page || 1
+  if (pageIndex) {
+    pageIndex = parseInt(pageIndex)
   }
-  let sql = 'from jing_book where is_del = 0 order by createtime desc'
-  let book = await db.findLimit('*', sql, page, 10)
+  const offset = pageIndex * pageSize - pageSize
+  const res = await JingBook.findAndCountAll({
+    where: {
+      is_del: 0,
+      menu_id: 1
+    },
+    order: [['createtime', 'DESC']],
+    offset: offset,
+    limit: pageSize
+  })
   let previous = '/#'
   if (page > 1) {
-    previous = `/page/${page - 1}`
+    previous = `/page/${pageIndex - 1}`
   }
   ctx.state = {
-    book: book.rows,
+    book: res.rows,
     title: `絮叨-${conf.title}`,
     route: 'index',
     previous: previous,
-    next: `/page/${page + 1}`
+    next: `/page/${pageIndex + 1}`
   }
   await ctx.render('index/index', {})
 }
 
 const work = async (ctx, next) => {
-  let sql =
-    'from jing_book where is_del = 0 and menu_id = 2 order by createtime desc'
-  let book = await db.findLimit('*', sql, 1, 10)
+  const pageIndex = 1,
+    pageSize = 10
+  const offset = pageIndex * pageSize - pageSize
+  const res = await JingBook.findAndCountAll({
+    where: {
+      is_del: 0,
+      menu_id: 2
+    },
+    order: [['createtime', 'DESC']],
+    offset: offset,
+    limit: pageSize
+  })
   ctx.state = {
-    book: book.rows,
+    book: res.rows,
     title: `絮叨-${conf.title}`,
     route: 'work',
     previous: '/#',
@@ -75,9 +91,7 @@ const work = async (ctx, next) => {
 
 const info = async (ctx, next) => {
   let dat = ctx.url
-  console.log(dat)
   let urls = dat.replace('/info', '')
-  console.log(urls)
 
   ctx.state = {
     title: `jingjing-${conf.title}`,
@@ -85,15 +99,23 @@ const info = async (ctx, next) => {
   }
   let url = 'index/info'
   await ctx.render(url, {})
-  // }
 }
 
 const about = async (ctx, next) => {
-  let sql =
-    'from jing_book where is_del = 0 and menu_id = 3 order by createtime desc'
-  let book = await db.findLimit('*', sql, 1, 10)
+  const pageIndex = 1,
+    pageSize = 10
+  const offset = pageIndex * pageSize - pageSize
+  const res = await JingBook.findAndCountAll({
+    where: {
+      is_del: 0,
+      menu_id: 3
+    },
+    order: [['createtime', 'DESC']],
+    offset: offset,
+    limit: pageSize
+  })
   ctx.state = {
-    book: book.rows,
+    book: res.rows,
     title: `絮叨-${conf.title}`,
     route: 'about',
     previous: '/#',

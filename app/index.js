@@ -9,11 +9,24 @@ import colors from 'colors'
 import { resolve } from 'path'
 import { koaSwagger } from 'koa2-swagger-ui'
 import mysql from 'mysql2'
+import moment from 'moment'
+import NP from 'number-precision'
+import helmet from 'koa-helmet'
 
 import conf from './config'
 import index from './routes'
 
 const app = new Koa()
+
+// 安全插件
+app.use(
+  helmet({
+    contentSecurityPolicy: false
+  })
+)
+
+// 关闭边界检查
+NP.enableBoundaryChecking(false)
 
 // 允许上传文件
 app.use(
@@ -130,26 +143,104 @@ app.use(
   })
 )
 
+// 打印错误到日志
+const printErrorPrint = (ctx, err, type = 0) => {
+  const title = type ? '业务逻辑错误:' : '服务端错误:'
+  if (err.code === 403) {
+    return
+  }
+  // console.log('\x1b[1;31m' + title + '\x1b[m', err)
+  let parm
+  if (ctx.request.method === 'POST') {
+    // console.log('POST入参:', JSON.stringify(ctx.request.body))
+    parm = ctx.request.body
+  } else {
+    // console.log('GET入参:', JSON.stringify(ctx.query))
+    parm = ctx.query
+  }
+  // console.log('请求头:', ctx)
+  console.log(`### [服务报错 - ${process.env.ENV}]\n
+  时间：${moment().utcOffset(8).format('YYYY-MM-DD HH:mm:ss')}\n
+  ${title}\n
+  ${JSON.stringify(err)}\n
+  URL：${ctx.request.url} - ${ctx.request.method}\n
+  入参：${JSON.stringify(parm)}`)
+
+  //   msg(JSON.stringify({
+  //     'msgtype': 'markdown',
+  //     'markdown': {
+  //       'title': '[服务报错]',
+  //       'text': `### [服务报错 - ${process.env.ENV}]\n
+  // 时间：${dayjs().utcOffset(8).format('YYYY-MM-DD HH:mm:ss')}\n
+  // ${title}\n
+  // ${JSON.stringify(err)}\n
+  // URL：${ctx.request.url} - ${ctx.request.method}\n
+  // 入参：${JSON.stringify(parm)}`
+  //     },
+  //     'at': {
+  //       // 'atMobiles': [
+  //       //   '150XXXXXXXX'
+  //       // ],
+  //       'isAtAll': false
+  //     }
+  //   }));
+}
+
 // error 业务逻辑错误
 app.use((ctx, next) => {
   return next().catch((err) => {
-    console.log(err)
-    let msg = err ? err.msg || err.toString() : 'unknown error'
+    printErrorPrint(ctx, err, 0)
     let code = err ? (err.code >= 0 ? err.code : 500) : 500
-    ctx.DATA.code = code
-    ctx.DATA.message = msg
+    ctx.DATA.code = 1
+    ctx.DATA.status = err ? err.msg || err.toString() : 'unknown error'
     ctx.body = ctx.DATA
     ctx.status =
       [200, 400, 401, 403, 404, 500, 503].indexOf(code) >= 0 ? code : 200
   })
 })
 
+// koa error-handling 服务端、http错误
+app.on('error', (err, ctx) => {
+  printErrorPrint(ctx, err, 1)
+})
+
 // routes
 app.use(index.routes(), index.allowedMethods())
 
-// koa error-handling 服务端、http错误
-app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx)
+// 监听未捕获的异常
+process.on('uncaughtException', (error) => {
+  console.error('uncaughtException', error)
+  // process.exit(1000);
+})
+
+// 监听Promise没有被捕获的失败函数
+process.on('unhandledRejection', (error) => {
+  console.error('unhandledRejection', error)
+  // process.exit(1001);
+})
+
+process.on('exit', function (code) {
+  console.log(`### [服务停止 - ${process.env.ENV}]\n
+时间：${dayjs().utcOffset(8).format('YYYY-MM-DD HH:mm:ss')}\n
+CODE：${code}`)
+
+  //   msg(
+  //     JSON.stringify({
+  //       msgtype: 'markdown',
+  //       markdown: {
+  //         title: '[服务停止]',
+  //         text: `### [服务停止 - ${process.env.ENV}]\n
+  // 时间：${dayjs().utcOffset(8).format('YYYY-MM-DD HH:mm:ss')}\n
+  // CODE：${code}`
+  //       },
+  //       at: {
+  //         // 'atMobiles': [
+  //         //   '150XXXXXXXX'
+  //         // ],
+  //         isAtAll: false
+  //       }
+  //     })
+  //   )
 })
 
 export { app }

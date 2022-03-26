@@ -14,9 +14,4 @@ const JingMenu = jing_menu(sequelize, Sequelize)
  * belongsToMany 多对多关联用于将源与多个目标相连接。 此外，目标也可以连接到多个源
  */
 
-export default {
-  JingBook,
-  JingMenu,
-  sequelize,
-  Sequelize
-}
+export { JingBook, JingMenu, sequelize, Sequelize }

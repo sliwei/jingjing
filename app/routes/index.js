@@ -62,6 +62,9 @@ import { fzf } from '../controllers/fzf'
 import * as api from '../controllers/api'
 import * as sys from '../controllers/sys'
 import * as index from '../controllers/index'
+
+console.log(sys)
+
 // test
 router.get('/test/get', get)
 router.post('/test/post', post)

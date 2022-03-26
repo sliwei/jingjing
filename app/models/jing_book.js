@@ -9,27 +9,27 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true
-      }, // int(11) NOT NULL AUTO_INCREMENT,
+      },
       menu_id: {
         type: DataTypes.INTEGER(11),
         allowNull: true
-      }, // int(11) DEFAULT NULL,
+      },
       title: {
         type: DataTypes.CHAR(255),
         allowNull: true
-      }, // varchar(255) DEFAULT NULL,
+      },
       note: {
         type: DataTypes.CHAR(255),
         allowNull: true
-      }, // varchar(255) DEFAULT NULL,
+      },
       url: {
         type: DataTypes.CHAR(255),
         allowNull: true
-      }, // varchar(255) DEFAULT NULL,
+      },
       headimg: {
         type: DataTypes.CHAR(255),
         allowNull: true
-      }, // varchar(255) DEFAULT NULL,
+      },
       createtime: {
         type: DataTypes.DATE,
         allowNull: true,
@@ -38,15 +38,24 @@ export default (sequelize, DataTypes) => {
             'YYYY-MM-DD HH:mm:ss'
           )
         }
-      }, // datetime DEFAULT NULL,
+      },
+      addtime: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        get() {
+          return moment(this.getDataValue('addtime')).format(
+            'YYYY-MM-DD HH:mm:ss'
+          )
+        }
+      },
       is_del: {
         type: DataTypes.INTEGER(1),
         allowNull: true
-      }, // int(1) unsigned zerofill DEFAULT NULL,
+      },
       user_id: {
         type: DataTypes.INTEGER(11),
         allowNull: true
-      } // int(11) DEFAULT NULL,
+      }
     },
     {
       tableName: 'jing_book'

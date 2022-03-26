@@ -1,12 +1,14 @@
-const db = null
+import { JingMenu } from '../models'
 
 /**
  * lw 新增一项 页面
  */
 const add = async (ctx, next) => {
-  let menu = await db.op('select * from jing_menu order by id desc')
+  const res = await JingMenu.findAll({
+    order: [['id', 'DESC']]
+  })
   ctx.state = {
-    menu: menu,
+    menu: res,
     title: '新增一项',
     dat: 'sys'
   }
@@ -17,10 +19,11 @@ const add = async (ctx, next) => {
  * lw 后台 列表
  */
 const root = async (ctx, next) => {
-  let book = await db.op('select * from jing_book order by createtime desc')
-  console.log(book)
+  const res = await JingBook.findAll({
+    order: [['createtime', 'DESC']]
+  })
   ctx.state = {
-    book: book,
+    book: res,
     title: 'koa2 sys',
     dat: 'sys'
   }

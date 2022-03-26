@@ -1,7 +1,7 @@
 /**
  * 配置文件
  */
-const env = require(`../../config/.env.${process.env.ENV}.js`)
+const conf = require(`../../config/.env.${process.env.ENV}.js`)
 
 const config = {
   title: 'COOOE',
@@ -15,7 +15,7 @@ const config = {
     path: '/',
     httpOnly: false
   },
-  ...env // 合并环境配置到config
+  ...conf.default // 合并环境配置到config
 }
 
 console.log('模式:', process.env.MODE)
