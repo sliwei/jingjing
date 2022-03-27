@@ -158,11 +158,18 @@ const printErrorPrint = (ctx, err, type = 0) => {
     // console.log('GET入参:', JSON.stringify(ctx.query))
     parm = ctx.query
   }
+  let errType = 'Error'
+  if (
+    Object.prototype.toString.call(err) === '[object Object]' ||
+    Object.prototype.toString.call(err) === '[object Array]'
+  ) {
+    errType = 'Object'
+  }
   // console.log('请求头:', ctx)
   console.log(`### [服务报错 - ${process.env.ENV}]\n
   时间：${moment().utcOffset(8).format('YYYY-MM-DD HH:mm:ss')}\n
   ${title}\n
-  ${JSON.stringify(err)}\n
+  ${errType === 'Object' ? JSON.stringify(err) : err.toString()}\n
   URL：${ctx.request.url} - ${ctx.request.method}\n
   入参：${JSON.stringify(parm)}`)
 
