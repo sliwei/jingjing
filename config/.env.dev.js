@@ -1,7 +1,7 @@
 export default {
   env: 'dev',
   api_url: {
-    API_CORE: 'http://core:3000'
+    API_CORE: 'http://core-serve:3000'
   },
   db: {
     database: 'db',
