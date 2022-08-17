@@ -6,21 +6,54 @@ style.
 		margin: 100px auto;
 	}
 	.title {
-		margin: 10px;
-		font-size: 16px;
+		margin-bottom: 40px;
+		font-size: 26px;
 		color: #666666;
+		text-align: center;
 	}
 	.m {
 		width: 960px;
 		margin: 20px auto;
 	}
+	.vjs-paused .vjs-big-play-button,
+	.vjs-paused.vjs-has-started .vjs-big-play-button {
+		display: block;
+	}
+
+	.video-js .vjs-big-play-button {
+		font-size: 2.5em;
+		line-height: 2.3em;
+		height: 2.5em;
+		width: 2.5em;
+		-webkit-border-radius: 2.5em;
+		-moz-border-radius: 2.5em;
+		border-radius: 2.5em;
+		background-color: #73859f;
+		background-color: rgba(115,133,159,.5);
+		border-width: 0.15em;
+		margin-top: -1.25em;
+		margin-left: -1.75em;
+	}
+	/* 中间的播放箭头 */
+	.vjs-big-play-button .vjs-icon-placeholder {
+		font-size: 1.63em;
+	}
+	/* 加载圆圈 */
+	.vjs-loading-spinner {
+		font-size: 2.5em;
+		width: 2em;
+		height: 2em;
+		border-radius: 1em;
+		margin-top: -1em;
+		margin-left: -1.5em;
+	}
 
 section.main.wrapper
 	.class-room
 		.title
-			| 1. 李霞《解一元一次方程》
+			| 《解一元一次方程》- 李霞
 		.m
-			video#my-video.video-js(controls='', preload='auto', width='960', height='600', poster='https://bstu.oss-cn-shenzhen.aliyuncs.com/lx.png', data-setup='{}')
+			video#my-video.video-js.vjs-big-play-centered(controls='', preload='auto', width='960', height='600', poster='https://bstu.oss-cn-shenzhen.aliyuncs.com/lx.png', data-setup='{}')
 				source(src='https://bstu.oss-cn-shenzhen.aliyuncs.com/%E6%9D%8E%E9%9C%9E%E3%80%8A%E8%A7%A3%E4%B8%80%E5%85%83%E4%B8%80%E6%AC%A1%E6%96%B9%E7%A8%8B%E3%80%8B.mp4', type='video/mp4')
 				p.vjs-no-js
 					| To view this video please enable JavaScript, and consider upgrading to a web browser that

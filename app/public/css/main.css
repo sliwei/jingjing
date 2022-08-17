@@ -326,18 +326,31 @@ footer .logo_footer {
 }
 footer .logo_footer,
 footer p.rights {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 footer p.rights {
   color: #a6a6a6;
   font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 footer p.rights a {
   font-weight: bold;
   color: #939292;
   text-decoration: none;
+}
+
+footer p.rights .beian {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer p.rights .beian img {
+  width: 16px;
 }
 
 footer ul.social_profiles {
