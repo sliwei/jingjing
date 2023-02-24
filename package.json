@@ -48,7 +48,7 @@
     "node-fetch": "2",
     "number-precision": "^1.5.2",
     "parameter": "^3.5.0",
-    "sequelize": "^5.2.8",
+    "sequelize": "^6.29.0",
     "svg-captcha": "^1.3.11",
     "swagger-jsdoc": "^6.1.0"
   },
