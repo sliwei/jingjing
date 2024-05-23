@@ -1,5 +1,5 @@
 # jingjing
 
-[![Build Status](https://drone.bstu.cn/api/badges/sliwei/jingjing/status.svg)](https://drone.bstu.cn/sliwei/jingjing)
+[![deploy](https://github.com/sliwei/jingjing/actions/workflows/action.yaml/badge.svg)](https://github.com/sliwei/jingjing/actions/workflows/action.yaml)
 
 > 一个 jade 渲染的项目
