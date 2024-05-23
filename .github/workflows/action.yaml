@@ -58,9 +58,9 @@ jobs:
             docker pull registry.cn-shenzhen.aliyuncs.com/sliwei/jingjing:${{ steps.date.outputs.tag }}
             docker compose stop
             docker compose rm -f
-            printf "${{ secrets.DOCKER_COMPOSE_YML }}" > docker-compose.yml
             export TAG=${{ steps.date.outputs.tag }}
             echo $TAG
+            printf "${{ secrets.DOCKER_COMPOSE_YML }}" > docker-compose.yml
             echo "$(date +'%Y-%m-%d %H:%M:%S'): $TAG" >> version.txt
             docker compose up -d
 
